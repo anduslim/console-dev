@@ -1,0 +1,85 @@
+meta:
+    debug: true
+    console_user: onconsole
+
+ontalk:
+    vm:
+        type:
+            -
+                name: proxy
+                service:
+                    -
+                        abstract_name: proxyservice1
+                        system_name: freeswitch
+                    -
+                        abstract_name: proxyservice2
+                        system_name: haproxy
+            -
+                name: app
+                service:
+                    -
+                        abstract_name: appservice1
+                        system_name: otc
+                    -
+                        abstract_name: appservice2
+                        system_name: tomcat
+                    -
+                        abstract_name: appservice3
+                        system_name: nginx
+                    -
+                        abstract_name: appservice4
+                        system_name: haproxy
+                    -
+                        abstract_name: appservice5
+                        system_name: openfire
+                    -
+                        abstract_name: appservice6
+                        system_name: kamailio
+                    -
+                        abstract_name: appservice7
+                        system_name: snoopy
+                    -
+                        abstract_name: appservice8
+                        system_name: woodstock
+    host:
+        -
+            abstract_name: kingpin_app1
+            centos_version: 7
+            ssh_user: onconsole
+            ssh_key_path: /home/onconsole/.ssh/id_rsa
+            ssh_port: 33322
+            hostname: app1.tbs
+            is_ha: true
+            ha_with_vm: app2.tbs
+            ip: 10.12.3.120
+            vm_type: app
+        -
+            abstract_name: kingpin_app2
+            centos_version: 7
+            ssh_user: onconsole
+            ssh_key_path: /home/onconsole/.ssh/id_rsa
+            hostname: app2.tbs
+            is_ha: true
+            ha_with_vm: app1.tbs
+            ip: 10.12.3.143
+            vm_type: app
+        -
+            abstract_name: kingpin_proxy1
+            centos_version: 7
+            ssh_user: onconsole
+            ssh_key_path: /home/onconsole/.ssh/id_rsa
+            hostname: proxy1.tbs
+            is_ha: true
+            ha_with_vm: proxy2.tbs
+            ip: 10.12.3.118
+            vm_type: proxy
+        -
+            abstract_name: kingpin_proxy2
+            centos_version: 7
+            ssh_user: onconsole
+            ssh_key_path: /home/onconsole/.ssh/id_rsa
+            hostname: proxy2.tbs
+            is_ha: true
+            ha_with_vm: proxy1.tbs
+            ip: 10.12.3.182
+            vm_type: proxy

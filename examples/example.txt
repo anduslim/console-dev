@@ -1,0 +1,17 @@
+help
+help say
+say goodnight, Gracie
+say -ps --repeat=5 goodnight, Gracie
+set
+set maxrepeats 5
+say -ps --repeat=5 goodnight, Gracie
+hi
+run 4
+orate Four score and
+seven kraken
+in the sea
+& look, a shortcut!
+say put this in a file > myfile.txtsay < myfile.txt
+set prompt "---> "
+quit
+
